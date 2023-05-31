@@ -1,6 +1,11 @@
 use rand::Rng;
+use std::io;
 
 fn main() {
+    guess();
+}
+
+fn uInt() {
     let mut rng = rand::thread_rng();
 
     let n1: u8 = rng.gen();
@@ -21,4 +26,28 @@ fn main() {
     println!("{}", u128::BITS);
 
     assert_eq!(u8::MAX, 255);
+}
+
+fn guess() {
+    println!("Guess the number!");
+
+    let secret_number: u8 = rand::thread_rng().gen_range(1..=101);
+
+
+
+    println!("The secret number is : {}", secret_number);
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+
+    io::stdin().read_line(&mut guess)
+        .expect("Failed to read line");
+
+    println!("You guessed: {}", guess);
+}
+
+fn printVec32() {
+    let array: Vec<u32> = (1..6).collect();
+    println!("range {:?}", array);
 }
