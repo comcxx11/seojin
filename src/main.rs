@@ -2,10 +2,27 @@ use rand::Rng;
 use std::io;
 
 fn main() {
-    guess();
+    show_bite();
 }
 
-fn uInt() {
+fn guess() {
+    println!("Guess the number!");
+
+    let secret_number: u8 = rand::thread_rng().gen_range(1..=101);
+
+    println!("The secret number is : {}", secret_number);
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+
+    io::stdin().read_line(&mut guess)
+        .expect("Failed to read line");
+
+    println!("You guessed: {}", guess);
+}
+
+fn u_int() {
     let mut rng = rand::thread_rng();
 
     let n1: u8 = rng.gen();
@@ -27,27 +44,18 @@ fn uInt() {
 
     assert_eq!(u8::MAX, 255);
 }
-
-fn guess() {
-    println!("Guess the number!");
-
-    let secret_number: u8 = rand::thread_rng().gen_range(1..=101);
-
-
-
-    println!("The secret number is : {}", secret_number);
-
-    println!("Please input your guess.");
-
-    let mut guess = String::new();
-
-    io::stdin().read_line(&mut guess)
-        .expect("Failed to read line");
-
-    println!("You guessed: {}", guess);
-}
-
-fn printVec32() {
+#[warn(dead_code)]
+fn print_vec32() {
     let array: Vec<u32> = (1..6).collect();
     println!("range {:?}", array);
+}
+
+fn show_bite() {
+    let string = "PseudoSecret-Pseudosecret-IMPORTANT-Please-Use-Ur-Own-Key-IMPORTANT";
+
+    for c in string.chars() {
+        let encoded_char = c.to_string().into_bytes();
+        let byte_length = encoded_char.len();
+        println!("Character: {}, Byte Length: {}", c, byte_length);
+    }
 }
